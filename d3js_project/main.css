@@ -1,0 +1,52 @@
+body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Arial', serif;
+}
+
+header{
+	color: #ffffff;
+	font: sans-serif;
+	padding: 3px 0 3px 30px;
+	background-color: #595959;
+}
+
+div{
+	color: #595959;
+	font: 'Arial', serif;
+	margin: 0;
+	padding: 10px 10px 200px 30px;
+	border: 1px solid;
+}
+
+footer{
+	size: 7px;
+	color: #;
+	margin: 0;
+	padding: 10px 10px 10px 30px;
+	border: 1px solid;
+}
+
+
+.line {
+		stroke: blue;
+		fill:none;
+		stroke-width: 3;
+	}
+	
+	.axis path,
+	.axis line {
+		fill: none;
+		stroke: black;
+		shape-rendering: crispEdges;
+	}
+	
+	.axis text {
+		font-size: 10px;
+		font-family: sans-serif;
+	}
+	
+	.text-label {
+		font-size: 10px;
+		font-family: sans-serif;
+	}
