@@ -1,3 +1,5 @@
+/* Simple, reusable slider in pure d3 */
+
 function simpleSlider () {
 
     var width = 100,

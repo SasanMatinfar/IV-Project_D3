@@ -6,42 +6,78 @@
 	<title>Information Visualization</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<script type="text/javascript" src="d3.min.js"></script>
+	<script src="slider.js"></script>
 </head>
 
 
 
 
-
-
 <body>
+<header><h2>Visualization Tool for Unemployment Rate in Munich (2000-2015)</h2></header>
 
-	<!--<header><h1>Visualization Tool for Unemployment Rate in Munich (2000-2015)</h1></header>
--->
+<!--Line Chart-->
+<div id="graph1">
+	<p>Line Chart here:</p>
+	
 	<script>
 		var width = 1200;
 		var height = 500;
-		var margin = {top: 50, right:50, bottom: 200, left: 150};
+		var margin = {top: 20, right:20, bottom: 20, left: 150};
+
+		var xScale = d3.scale.linear().range([margin.left, width - margin.right]).domain([2000, 2015]);
+		var yScale = d3.scale.linear().range([height - margin.top, margin.bottom]).domain([3, 7]);
 		
-		d3.csv("year02.csv")
-			.row(function(d) {return {anno:Number(d.anno), unempl:Number(d.unempl), popul:Number(d.popul)};})
+		d3.csv("year-gesamt-rate.csv")
+			.row(function(d) {return {year:Number(d.year), type:String(d.type), rate:Number(d.rate)};})
 			
 
-		d3.csv("year02.csv", function(data) {
+		d3.csv("year-gesamt-rate.csv", function(data) {
 
-			var svg = d3.select("body")
+			var svg = d3.select("#graph1")
 						.append("svg")
 						.attr("width", width)
-						.attr("height", height +20)
-						.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+						.attr("height", height)
+						.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+						
+		
 
+	
+
+		})
+
+	</script>
+</div>
+
+<br>
+
+<!--Bar Chart-->
+<div id="graph2">
+	<p>Bar Chart here:</p>
+	<script>
+		var width = 1200;
+		var height = 500;
+		var margin = {top: 20, right:20, bottom: 20, left: 150};
+		
+		d3.csv("year-gesamt-rate.csv")
+			.row(function(d) {return {year:Number(d.year), type:String(d.type), rate:Number(d.rate)};})
+			
+
+		d3.csv("year-gesamt-rate.csv", function(data) {
+
+			var svg = d3.select("#graph2")
+						.append("svg")
+						.attr("width", width)
+						.attr("height", height)
+						.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+						
 			svg.selectAll("rect")
 				.data(data)
 				.enter()
 					.append("rect")
-					.attr("height", function (d) { return d.unempl / 300; })
+					.attr("height", function (d) { return d.rate * 50 ; })
 					.attr("width", 30)
-					.attr("x", function(d, i) { return i*70; })
-					.attr("y", function (d) { return height - (d.unempl / 300); })
+					.attr("x", function(d, i) { return i*60; })
+					.attr("y", function (d) { return height - (d.rate * 50) - 40; })
 					.attr("fill", "#4a4a4a")
 					
 
@@ -50,13 +86,53 @@
 				.enter()
 					.append("text")
 					.attr("fill", "black")
-					.attr("x", function (d, i) { return i*70; })
-					.attr("y", height + 20)
-					.text(function (d) { return d.anno})		
+					.attr("x", function (d, i) { return i*60; })
+					.attr("y", height - 20)
+					.text(function (d) { return d.year})	
+	
 		})
+	</script>
+</div>
+
+<br>
+
+<!--GeoGraph-->
+<div id="graph3">
+	<p>Geo Chart here:</p>
+</div>
+
+<br>
+
+<!--slider-->
+<div id="slider"></div>
+
+	<script>
+
+    var svg = d3.select("#slider").append("svg").attr("width", 1000).attr("height", 700),
+        slider1 = new simpleSlider(),
+        slider2 = new simpleSlider(),
+        circle = svg.append("circle").attr("cx", 50).attr("cy", 100).attr("r", 30);
+
+
+    slider1.width(200).x(30).y(200).value(1.0).event(function(){
+        circle.attr("r", 30 * slider1.value());
+    });
+
+    slider2.width(200).x(30).y(230).value(0.5).event(function(){
+        circle.attr("cx", 50 + (170 * slider2.value()));
+    });
+
+    svg.call(slider1);
+    svg.call(slider2);
+
+	svg.append().slider().axis(true).min(2000).max(2015).step(1)
+
 
 	</script>
 
+
+<!--footer-->
+<footer align="center"> Created by <br> Sasan Matinfar & Mahsa Mirzamohammad</footer>
 </body>
 
 
@@ -64,15 +140,7 @@
 
 
 
-<!--<div>Short description of the data set and visualization concept
-	<script type="text/javascript" src="year.js"></script>
-</div>
 
-<div>First Visualization Tool</div>
 
-<div>Second Visualization Tool</div>
 
-<div>Third Visualization Tool</div>
 
-<footer align="center"> Created by <br> Sasan Matinfar & Mahsa Mirzamohammad</footer>
--->
