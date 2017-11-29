@@ -2,16 +2,11 @@ var height = 300;
 var width = 600;
 var margin = {top: 20, right:20, bottom: 50, left: 20};
 	
-	
-	// formatters for axis and labels
-var currencyFormat = d3.format("$0.2f");
-var decimalFormat = d3.format("0.2f");
-	
-	var svg = d3.select("body")
-		.append("svg")
-		.attr("width", width + margin.left + margin.right)
-		.attr("height", height + margin.top + margin.bottom)
-		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var svg = d3.select("body")
+			.append("svg")
+			.attr("width", width + margin.left + margin.right)
+			.attr("height", height + margin.top + margin.bottom)
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 	
 	svg.append("g")
 		.attr("class", "y axis");

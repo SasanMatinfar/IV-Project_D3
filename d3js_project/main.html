@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-
-
 <head>
 	<meta charset="utf-8">
 	<title>Information Visualization</title>
@@ -10,41 +8,13 @@
 </head>
 
 
-
-
 <body>
 <header><h2>Visualization Tool for Unemployment Rate in Munich (2000-2015)</h2></header>
 
 <!--Line Chart-->
 <div id="graph1">
-	<p>Line Chart here:</p>
-	
-	<script>
-		var width = 1200;
-		var height = 500;
-		var margin = {top: 20, right:20, bottom: 20, left: 150};
-
-		var xScale = d3.scale.linear().range([margin.left, width - margin.right]).domain([2000, 2015]);
-		var yScale = d3.scale.linear().range([height - margin.top, margin.bottom]).domain([3, 7]);
-		
-		d3.csv("year-gesamt-rate.csv")
-			.row(function(d) {return {year:Number(d.year), type:String(d.type), rate:Number(d.rate)};})
-			
-
-		d3.csv("year-gesamt-rate.csv", function(data) {
-
-			var svg = d3.select("#graph1")
-						.append("svg")
-						.attr("width", width)
-						.attr("height", height)
-						.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-						
-		
-
-	
-
-		})
-
+	<p>Line Chart</p>
+	<script src="scriptGraph1.js"></script>
 	</script>
 </div>
 
@@ -52,46 +22,8 @@
 
 <!--Bar Chart-->
 <div id="graph2">
-	<p>Bar Chart here:</p>
-	<script>
-		var width = 1200;
-		var height = 500;
-		var margin = {top: 20, right:20, bottom: 20, left: 150};
-		
-		d3.csv("year-gesamt-rate.csv")
-			.row(function(d) {return {year:Number(d.year), type:String(d.type), rate:Number(d.rate)};})
-			
-
-		d3.csv("year-gesamt-rate.csv", function(data) {
-
-			var svg = d3.select("#graph2")
-						.append("svg")
-						.attr("width", width)
-						.attr("height", height)
-						.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-						
-			svg.selectAll("rect")
-				.data(data)
-				.enter()
-					.append("rect")
-					.attr("height", function (d) { return d.rate * 50 ; })
-					.attr("width", 30)
-					.attr("x", function(d, i) { return i*60; })
-					.attr("y", function (d) { return height - (d.rate * 50) - 40; })
-					.attr("fill", "#4a4a4a")
-					
-
-			svg.selectAll("text")
-				.data(data)
-				.enter()
-					.append("text")
-					.attr("fill", "black")
-					.attr("x", function (d, i) { return i*60; })
-					.attr("y", height - 20)
-					.text(function (d) { return d.year})	
-	
-		})
-	</script>
+	<p>Bar Chart</p>
+	<script src="scriptGraph2.js"></script>
 </div>
 
 <br>
@@ -99,11 +31,15 @@
 <!--GeoGraph-->
 <div id="graph3">
 	<p>Geo Chart here:</p>
+
+<img src="to be.png" height="30%" width="30%">
+
 </div>
 
 <br>
 
 <!--slider-->
+<!--
 <div id="slider"></div>
 
 	<script>
@@ -129,6 +65,7 @@
 
 
 	</script>
+-->
 
 
 <!--footer-->

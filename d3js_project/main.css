@@ -23,6 +23,19 @@ p{
 	color: #999999;
 }
 
+path{ 
+    stroke: black;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line{
+    stroke: #7a7a7a;
+    stroke-width: 2;
+    shape-rendering: crispEdges;
+}
+
 footer{
 	font-size: 12px;
 	color: #d9d9d9;
@@ -30,26 +43,3 @@ footer{
 	padding: 10px 10px 10px 30px;
 	border: none;
 }
-
-.line 1
-		stroke: blue;
-		fill:none;
-		stroke-width: 3;
-	}
-	
-	.axis path,
-	.axis line {
-		fill: none;
-		stroke: black;
-		shape-rendering: crispEdges;
-	}
-	
-	.axis text {
-		font-size: 10px;
-		font-family: sans-serif;
-	}
-	
-	.text-label {
-		font-size: 10px;
-		font-family: sans-serif;
-	}
