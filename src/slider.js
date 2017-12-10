@@ -2,7 +2,7 @@ var width4 = 500;
 var height4 = 50;
 var margin4 = {top: 20, right: 0, bottom: 20, left: 150};
 
-var pType = ["men", "women", "foreigner", "german", "total"]
+var pType = ["men", "women", "foreigner", "german", "total"];
 
 var csvData = "data/area-rate-2015.csv";
 
@@ -13,7 +13,7 @@ var svg4 = d3.select("#slider")
               .attr("transform", "translate(" + margin4.left + "," + 0 + ")");
 
 var x = d3.scaleLinear()
-          .domain([1, 5])
+          .domain([0, 4])
           .range([0, (width4-margin4.left)])
           .clamp(true);
 
@@ -37,9 +37,9 @@ slider.insert("g", ".track-overlay")
         .attr("class", "ticks")
         .attr("transform", "translate(0," + 20 + ")")
       .selectAll("text")
-        .data(x.ticks(5))
+        .data(pType)
         .enter().append("text")
-          .attr("x", x)
+          .attr("x", function (d, i) { return i*70; })
           .attr("text-anchor", "bottom")
         .text(function(d) { return d ; });
 
