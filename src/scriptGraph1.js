@@ -1,12 +1,12 @@
 var width1 = 700;
-var height1 = 250;
+var height1 = 220;
 var margin1 = {top: 0, right: 0, bottom: 20, left: 150};
 
 
 var parseDate = d3.timeParse("y");
 
 var xScale = d3.scaleLinear().domain([2000,2016]).range([20,500]);
-var yScale = d3.scaleLinear().domain([10,0]).range([20,200]);
+var yScale = d3.scaleLinear().domain([9,1]).range([20,180]);
 
 var xAxis = d3.axisBottom(xScale);
 var yAxis = d3.axisLeft(yScale);
@@ -29,7 +29,7 @@ d3.csv("data/year-gesamt-rate.csv", function(error, data) {
 
     svg1.append("g")
         	.attr("class", "axis")
-            .attr("transform", "translate(0,200)")
+            .attr("transform", "translate(0,180)")
             .call(xAxis.tickFormat(d3.format("0000")))
 
     svg1.append("g")

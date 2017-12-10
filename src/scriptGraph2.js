@@ -1,6 +1,6 @@
 var width2 = 1200;
-var height2 = 550;
-var margin2 = {top: 0, right: 20, bottom: 20, left: 300};
+var height2 = 480;
+var margin2 = {top: 0, right: 20, bottom: 20, left: 75};
 
 var svg2 = d3.select("#graph2")
 				.append("svg")
@@ -14,8 +14,8 @@ d3.csv(csvData, function(data) {
 		.enter()
 			.append("rect")
 				.attr("width", function (d) { return d.rate * 50 ; })
-				.attr("height", 15)
-				.attr("y", function(d, i) { return i*20; })
+				.attr("height", 13)
+				.attr("y", function(d, i) { return i*18; })
 				.attr("x", function (d) { return height2 - (d.rate * 50) - 150; })
 				.attr("fill", "#4a4a4a")
 					
@@ -24,7 +24,7 @@ d3.csv(csvData, function(data) {
 		.enter()
 			.append("text")
 				.attr("fill", "black")
-				.attr("y", function (d, i) { return i*20 +10; })
+				.attr("y", function (d, i) { return i*18 +10; })
 				.attr("x", height2 - 140)
 				.style("writing-mode", "lr")
 				.style("font-size", "9")

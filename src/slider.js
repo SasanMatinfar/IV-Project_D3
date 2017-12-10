@@ -1,6 +1,8 @@
-var width4 = 800;
+var width4 = 500;
 var height4 = 50;
-var margin4 = {top: 20, right: 0, bottom: 20, left: 20};
+var margin4 = {top: 20, right: 0, bottom: 20, left: 150};
+
+var pType = ["men", "women", "foreigner", "german", "total"]
 
 var csvData = "data/area-rate-2015.csv";
 
@@ -11,13 +13,13 @@ var svg4 = d3.select("#slider")
               .attr("transform", "translate(" + margin4.left + "," + 0 + ")");
 
 var x = d3.scaleLinear()
-          .domain([2000, 2016])
-          .range([0, width4])
+          .domain([1, 5])
+          .range([0, (width4-margin4.left)])
           .clamp(true);
 
 var slider = svg4.append("g")
                   .attr("class", "slider")
-                  .attr("transform", "translate(" + margin4.left + "," + margin4.top + ")");
+                  .attr("transform", "translate(" + 85 + "," + margin4.top + ")");
 
 slider.append("line")
         .attr("class", "track")
@@ -35,7 +37,7 @@ slider.insert("g", ".track-overlay")
         .attr("class", "ticks")
         .attr("transform", "translate(0," + 20 + ")")
       .selectAll("text")
-        .data(x.ticks(15))
+        .data(x.ticks(5))
         .enter().append("text")
           .attr("x", x)
           .attr("text-anchor", "bottom")
