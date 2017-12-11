@@ -1,7 +1,7 @@
 var width3 = 1200;
 var height3 = 700;
 var margin3 = {top: 30, right: 20, bottom: 20, left: 200};
-// to draw shape and lines
+
 var projection = d3.geoMercator()
                     .scale(120000)
                     .center([11.61,48.160]);
@@ -19,23 +19,12 @@ var svg3 = d3.select ("#graph3")
 d3.json("data/munich.geojson", function(error, mapData){
     console.log(mapData);
 
-// code
-    //var m_n=munich.geojson.features(mapData, mapData.features.properties.name).features
-    //console.console.log(m_n);
-
-
     var features = mapData.features;
-
+        
         svg3.selectAll ("path")
         .data(features).enter()
-        // add a path for each district
         .append("path")
-        .attr("class", "district")
-
-        //
-
-
-
+        .attr("class", "district") 
         .attr("data-name",function(munich_district){
           return munich_district.properties.name;
         })
@@ -51,17 +40,4 @@ d3.json("data/munich.geojson", function(error, mapData){
         .attr("title",function(munich_district){
           return munich_district.properties.name;
         })
-        // d a list of cordinates , in orther to draw a shape
-        .attr("d",path)
-// text
-
-svg3.append("text")
-.attr("data-munich_r_1",function(munich_district){return path.centroid(munich_district) [0];})
-.attr("data-munich_r_2",function(munich_district){return path.centroid(munich_district) [1];})
-//.text(function ()){return .properties.name;})
-
-});
-
-//click
-
-//mouseover
+        .attr("d",path)});
