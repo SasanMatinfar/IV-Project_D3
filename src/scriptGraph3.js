@@ -31,6 +31,7 @@ d3.json("data/munich.geojson", function(error, mapData){
 				.attr("title",function(munich_district){return munich_district.properties.name;})
 				.attr("d",path)
 				.attr("fill", "#000000");
+<<<<<<< HEAD
 
 		svg3.selectAll("area-center")
 			.data(features).enter()
@@ -40,6 +41,17 @@ d3.json("data/munich.geojson", function(error, mapData){
 			.attr("cy", function(d){return path.centroid(d)[1];})
 			.style("fill", "4a4a4a");
 
+=======
+		
+		svg3.selectAll("area-center")
+			.data(features).enter()
+			.append("circle")
+			.attr("r", 3.5) 
+			.attr("cx", function(d){return path.centroid(d)[0];})
+			.attr("cy", function(d){return path.centroid(d)[1];})
+			.style("fill", "4a4a4a");			
+		
+>>>>>>> 76d571e2e21fcace37bbf76d7e19bedd9b801e0b
 		svg3.selectAll("text")
 			.data(features).enter()
 			.append("text")
@@ -48,6 +60,7 @@ d3.json("data/munich.geojson", function(error, mapData){
 			.text(function(d){return d.properties.name.slice(0,12);})
 			.style("fill", "4a4a4a")
 			.style("font-size", "9px");
+<<<<<<< HEAD
 
       var zoomsetting= {
         duration: 1000,
@@ -76,3 +89,6 @@ d3.json("data/munich.geojson", function(error, mapData){
         .ease(zoomsetting.ease)
       }
 });
+=======
+});
+>>>>>>> 76d571e2e21fcace37bbf76d7e19bedd9b801e0b
