@@ -1,9 +1,9 @@
 var width3 = 1200;
 var height3 = 700;
-var margin3 = {top: 30, right: 20, bottom: 20, left: 150};
+var margin3 = {top: 30, right: 20, bottom: 20, left: 190};
 
 var projection = d3.geoMercator()
-                    .scale(100000)
+                    .scale(120000)
                     .center([11.61,48.160]);
 
 var path = d3.geoPath().projection(projection);
@@ -14,7 +14,7 @@ var svg3 = d3.select ("#graph3")
               .attr ("height" , height3)
               .attr("transform", "translate(" + margin3.left + "," + 0 + ")")
               .append ("g")
-              .attr("transform", "translate(" + 75 + "," + 0 + ")");
+              .attr("transform", "translate(" + 75 + "," + 30 + ")");
 
 d3.json("data/munich.geojson", function(error, mapData){
     console.log(mapData);
