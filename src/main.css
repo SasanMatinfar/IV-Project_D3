@@ -36,11 +36,11 @@ path{
 }
 .line{
 	stroke: #595959;
-<<<<<<< HEAD
+
 	stroke-width: 2;
-=======
+
 	stroke-width: 1.75;
->>>>>>> 76d571e2e21fcace37bbf76d7e19bedd9b801e0b
+
 }
 .axis path,
 .axis line{
@@ -57,12 +57,6 @@ footer{
 	border: none;
 	background-color: #595959;
 }
-<<<<<<< HEAD
-=======
-
-
-
-
 
 .ticks {
   font: 10px sans-serif;
@@ -98,4 +92,3 @@ footer{
   stroke-opacity: 1;
   stroke-width: 1.5px;
 }
->>>>>>> 76d571e2e21fcace37bbf76d7e19bedd9b801e0b

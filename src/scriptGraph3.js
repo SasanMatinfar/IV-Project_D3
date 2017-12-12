@@ -87,4 +87,3 @@ d3.json("data/munich.geojson", function(error, mapData){
         .ease(zoomsetting.ease)
       }
 });
-\\here some comments
