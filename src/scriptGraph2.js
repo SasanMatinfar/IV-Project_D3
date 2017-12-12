@@ -7,6 +7,10 @@ var svg2 = d3.select("#graph2")
 					.attr("width", width2)
 					.attr("height", height2)
 					.attr("transform", "translate(" + margin2.left + "," + 0 + ")")
+<<<<<<< HEAD
+=======
+
+>>>>>>> c0b8c1f3e1f8fd2ac569afce09e4a1a9f49b55e4
 d3.csv("data/area-rate-2015.csv", function(data) {
 
 	svg2.selectAll("rect")
@@ -18,7 +22,7 @@ d3.csv("data/area-rate-2015.csv", function(data) {
 				.attr("y", function(d, i) { return i*18; })
 				.attr("x", function (d) { return height2 - (d.rate * 50) - 150; })
 				.attr("fill", "#4a4a4a")
-					
+
 	svg2.selectAll("text")
 		.data(data)
 		.enter()
@@ -28,7 +32,7 @@ d3.csv("data/area-rate-2015.csv", function(data) {
 				.attr("x", height2 - 140)
 				.style("writing-mode", "lr")
 				.style("font-size", "9")
-				.text(function (d) { return d.area})	
+				.text(function (d) { return d.area})
 		});
 
 svg2.transition() // Gratuitous intro!
