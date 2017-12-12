@@ -1,4 +1,4 @@
-var width2 = 1200;
+var width2 = 1000;
 var height2 = 480;
 var margin2 = {top: 0, right: 20, bottom: 20, left: 75};
 
@@ -7,7 +7,7 @@ var svg2 = d3.select("#graph2")
 					.attr("width", width2)
 					.attr("height", height2)
 					.attr("transform", "translate(" + margin2.left + "," + 0 + ")")
-d3.csv(csvData, function(data) {
+d3.csv("data/area-rate-2015.csv", function(data) {
 
 	svg2.selectAll("rect")
 		.data(data)

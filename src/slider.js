@@ -2,7 +2,7 @@ var width4 = 500;
 var height4 = 50;
 var margin4 = {top: 20, right: 0, bottom: 20, left: 150};
 
-var pType = ["men", "women", "foreigner", "german", "total"];
+
 
 var csvData = "data/area-rate-2015.csv";
 
@@ -39,7 +39,7 @@ slider.insert("g", ".track-overlay")
       .selectAll("text")
         .data(pType)
         .enter().append("text")
-          .attr("x", function (d, i) { return i*70; })
+          .attr("x", function (d, i) { return i*83; })
           .attr("text-anchor", "bottom")
         .text(function(d) { return d ; });
 
