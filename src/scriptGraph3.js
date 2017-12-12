@@ -1,7 +1,8 @@
 var width3 = 1200;
 var height3 = 700;
 var margin3 = {top: 30, right: 20, bottom: 20, left: 190};
-
+var colorDomain;
+var colorScale;
 var projection = d3.geoMercator()
                     .scale(120000)
                     .center([11.61,48.160]);
@@ -20,7 +21,7 @@ d3.json("data/munich.geojson", function(error, mapData){
     console.log(mapData);
     var features = mapData.features;
 
-        svg3.selectAll("path")
+      svg3.selectAll("path")
 			.data(features).enter()
 			.append("path")
 				.attr("class", "district")
@@ -29,17 +30,9 @@ d3.json("data/munich.geojson", function(error, mapData){
 				.attr("data-munich_r_2",function(munich_district){return munich_district.properties.munich_r_2;})
 				.attr("id",function(munich_district){return munich_district.properties.cartodb_id;})
 				.attr("title",function(munich_district){return munich_district.properties.name;})
-				.attr("d",path)
-				.attr("fill", "#000000");
+				.attr("d",path);
+        //.style("fill", function (d) { return mapColor(d);});
 
-
-		svg3.selectAll("area-center")
-			.data(features).enter()
-			.append("circle")
-			.attr("r", 3.5)
-			.attr("cx", function(d){return path.centroid(d)[0];})
-			.attr("cy", function(d){return path.centroid(d)[1];})
-			.style("fill", "4a4a4a");
 
 
 		svg3.selectAll("area-center")
@@ -49,6 +42,8 @@ d3.json("data/munich.geojson", function(error, mapData){
 			.attr("cx", function(d){return path.centroid(d)[0];})
 			.attr("cy", function(d){return path.centroid(d)[1];})
 			.style("fill", "4a4a4a");
+
+
 
 		svg3.selectAll("text")
 			.data(features).enter()
@@ -59,31 +54,34 @@ d3.json("data/munich.geojson", function(error, mapData){
 			.style("fill", "4a4a4a")
 			.style("font-size", "9px");
 
-
-      var zoomsetting= {
-        duration: 1000,
-        ease: d3.easeCubicOut,
-        zoomLevel:5
-      };
-      function clicked (d){
-        var x;
-        var y;
-        var zoomLevel;
-        if (d & centered !==d ) {
-          var centroid = path.centroid (d);
-          x=centroid[0];
-          y=centroid[1];
-          zoomLevel=zoomsetting.zoomLevel;
-          centered = d;
-        }
-        else {
-          x= width/2;
-          y=height/2;
-          zoomLevel=1;
-          centered=null;
-        }
-        g.transition()
-        .duration(zoomsetting.duration)
-        .ease(zoomsetting.ease)
-      }
 });
+
+d3.queue()
+  .defer(d3.csv, "data/area-rate-2015.csv")
+  .defer(d3.json, "data/munich.geojson")
+  .await(analyze);
+
+function analyze(error, myCsv, myGeo) {
+  if(error) { console.log(error); }
+
+  
+}
+
+
+/*function mapColor(d) {
+  d3.csv("data/area-rate-2015.csv", function(error, csvData) {
+          d3.json("data/munich.geojson", function(error, mapData){
+                colorDomain = d3.extent(csvData, function(mapData) {
+                  if (csvData.area == mapData.features.name){
+                    return csvData.rate;
+                    }
+                  });
+
+                       colorScale = d3.scaleLinear().domain(colorDomain).range(["white","black"]);
+
+            });
+
+
+    })
+  return colorScale(csvData.rate);}
+*/
