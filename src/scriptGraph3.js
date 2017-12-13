@@ -17,6 +17,15 @@ var svg3 = d3.select ("#graph3")
               .append ("g")
               .attr("transform", "translate(" + 75 + "," + 30 + ")");
 
+var rateTable = d3.csv("data/ratemap2015.csv");
+  console.log(rateTable);
+var colorDomain = d3.extent(rateTable, function(d){return d.rate;});
+
+            console.log("colordomain is: " + colorDomain);
+
+
+var colorScale = d3.scaleLinear().domain(colorDomain).range(["lightblue","blue"]);
+
 d3.json("data/munich.geojson", function(error, mapData){
     console.log(mapData);
     var features = mapData.features;
@@ -30,10 +39,8 @@ d3.json("data/munich.geojson", function(error, mapData){
 				.attr("data-munich_r_2",function(munich_district){return munich_district.properties.munich_r_2;})
 				.attr("id",function(munich_district){return munich_district.properties.cartodb_id;})
 				.attr("title",function(munich_district){return munich_district.properties.name;})
-				.attr("d",path);
-        //.style("fill", function (d) { return mapColor(d);});
-
-
+				.attr("d",path)
+       .style("fill", function(d) {return colorScale(d.rate);});
 
 		svg3.selectAll("area-center")
 			.data(features).enter()
@@ -42,6 +49,8 @@ d3.json("data/munich.geojson", function(error, mapData){
 			.attr("cx", function(d){return path.centroid(d)[0];})
 			.attr("cy", function(d){return path.centroid(d)[1];})
 			.style("fill", "#4a4a4a");
+
+
 
 
 
@@ -56,32 +65,38 @@ d3.json("data/munich.geojson", function(error, mapData){
 
 });
 
-d3.queue()
-  .defer(d3.csv, "data/area-rate-2015.csv")
-  .defer(d3.json, "data/munich.geojson")
-  .await(analyze);
+//  .defer(d3.csv, "data/area-rate-2015.csv")
+  //.defer(d3.json, "data/munich.geojson")
+  //.await(analyze);
 
-function analyze(error, myCsv, myGeo) {
-  if(error) { console.log(error); }
+//function analyze(error, myCsv, myGeo) {
+  //if(error) { console.log(error); }
 
-  
-}
+//console.log (d3.csv, "data/area-rate-2015.csv");
+//console.log (d3.json, "data/munich.geojson");
+//}
 
+/*function join(lookupTable, mainTable, lookupKey, mainKey, select) {
+    var l = lookupTable.length,
+        m = mainTable.length,
+        lookupIndex = [],
+        output = [];
+    for (var i = 0; i < l; i++) { // loop through l items
+        var row = lookupTable[i];
+        lookupIndex[row[lookupKey]] = row; // create an index for lookup table
+    }
+    for (var j = 0; j < m; j++) { // loop through m items
+        var y = mainTable[j];
+        var x = lookupIndex[y[mainKey]]; // get corresponding row from lookupTable
+        output.push(select(y, x)); // select only the columns you need
+    }
+    return output;
+};
 
-/*function mapColor(d) {
-  d3.csv("data/area-rate-2015.csv", function(error, csvData) {
-          d3.json("data/munich.geojson", function(error, mapData){
-                colorDomain = d3.extent(csvData, function(mapData) {
-                  if (csvData.area == mapData.features.name){
-                    return csvData.rate;
-                    }
-                  });
-
-                       colorScale = d3.scaleLinear().domain(colorDomain).range(["white","black"]);
-
-            });
-
-
-    })
-  return colorScale(csvData.rate);}
+//var csvTable= d3.csv("data/area-rate-2015.csv");
+//var jsonTable= d3.json("data/munich.geojson");
 */
+function mapColor(d) {
+        colorScale
+        console.log("colorscale is: " + colorScale);
+  }
