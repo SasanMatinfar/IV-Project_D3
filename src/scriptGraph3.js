@@ -51,7 +51,7 @@ d3.json("data/munich.geojson", function(error, mapData){
 			.attr("x", function(d){return path.centroid(d)[0]-20;})
 			.attr("y", function(d){return path.centroid(d)[1]-10;})
 			.text(function(d){return d.properties.name.slice(0,12);})
-			.style("fill", "4a4a4a")
+			.style("fill", "#4a4a4a")
 			.style("font-size", "9px");
 
 });
