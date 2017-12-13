@@ -2,11 +2,10 @@ var width1 = 700;
 var height1 = 220;
 var margin1 = {top: 0, right: 0, bottom: 20, left: 150};
 
-
 var parseDate = d3.timeParse("y");
 
 var xScale = d3.scaleLinear().domain([2000,2016]).range([20,500]);
-var yScale = d3.scaleLinear().domain([9,1]).range([20,180]);
+var yScale = d3.scaleLinear().domain([9,0]).range([20,180]);
 
 var xAxis = d3.axisBottom(xScale);
 var yAxis = d3.axisLeft(yScale);
@@ -17,12 +16,6 @@ var valueline = d3.line()
 
 var pType = ["men", "women", "foreigner", "german", "total"];
 var pTypeColor = ["#333399", "#cc0099", "#00cc00", "#ffcc00", "#595959"];
-
-/*var files = {men: "data/year-gesamt-rate0.csv", 
-            women: "data/year-gesamt-rate1.csv", 
-            foreigner: "data/year-gesamt-rate2.csv", 
-            german: "data/year-gesamt-rate3.csv",
-            total: "data/year-gesamt-rate4.csv"};*/
 
 var svg1 = d3.select("#graph1")
                 .append("svg")
@@ -35,7 +28,7 @@ var svg1 = d3.select("#graph1")
         svg1.append("path")
             .attr("class", "line")
             .attr("d", valueline(data))
-            .style("stroke", "#595959");
+            .style("stroke", "#595959")
 
         svg1.append("g")
             .attr("class", "axis")
@@ -46,6 +39,9 @@ var svg1 = d3.select("#graph1")
             .attr("class", "axis")
             .attr("transform", "translate(20,0)")
             .call(yAxis)
+
+        svg1.selectAll(".line")
+            .attr("id", "totalID");
     }); 
 
 
@@ -72,6 +68,7 @@ var svgBox = d3.select("#container")
             //.on("mouseout", handleMouseOut)
 
 function drawTrendLine(d, color){
+
         
     d3.csv("data/year-gesamt-rate-" + d + ".csv", function(error, data) {
 
@@ -89,6 +86,8 @@ function drawTrendLine(d, color){
             .attr("class", "axis")
             .attr("transform", "translate(20,0)")
             .call(yAxis);
+        svg1.selectAll(".line")
+            .attr("id", ""+d+"ID");
     }); 
 }             
 
@@ -103,10 +102,17 @@ function handleMouseOut(d, i) {
 }
 
 function handleMouseClick(d) {
-    console.log(d);
-    var lineColor = d3.select(this).attr("fill");
-    console.log(lineColor);
-    drawTrendLine(d, lineColor);
+    
+    if (!d3.selectAll("#"+d+"ID").empty()) {
+
+        d3.selectAll("#"+d+"ID").remove(); console.log("object is active!!!");
+        
+    } else {
+        console.log(d);
+        var lineColor = d3.select(this).attr("fill");
+        console.log(lineColor);
+        drawTrendLine(d, lineColor);
+            }
 }
 
 
