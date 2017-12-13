@@ -51,7 +51,7 @@ d3.json("data/munich.geojson", function(error, mapData){
 			.attr("x", function(d){return path.centroid(d)[0]-20;})
 			.attr("y", function(d){return path.centroid(d)[1]-10;})
 			.text(function(d){return d.properties.name.slice(0,12);})
-			.style("fill", "4a4a4a")
+			.style("fill", "#4a4a4a")
 			.style("font-size", "9px");
 
 });
@@ -64,11 +64,11 @@ d3.queue()
 function analyze(error, myCsv, myGeo) {
   if(error) { console.log(error); }
 
-  
+
 }
 
 
-/*function mapColor(d) {
+function mapColor(d) {
   d3.csv("data/area-rate-2015.csv", function(error, csvData) {
           d3.json("data/munich.geojson", function(error, mapData){
                 colorDomain = d3.extent(csvData, function(mapData) {
@@ -84,4 +84,3 @@ function analyze(error, myCsv, myGeo) {
 
     })
   return colorScale(csvData.rate);}
-*/

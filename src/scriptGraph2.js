@@ -1,4 +1,4 @@
-var width2 = 1200;
+var width2 = 1000;
 var height2 = 480;
 var margin2 = {top: 0, right: 20, bottom: 20, left: 75};
 
