@@ -28,7 +28,9 @@ path{
     stroke-width: 0.5;
     fill: none;
 }
-
+.district {
+	fill: none;
+}
 #container{
 	padding-left: 200px;
 	padding-bottom: 0;
