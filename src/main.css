@@ -36,10 +36,9 @@ path{
 }
 .line{
 	stroke: #595959;
-
 	stroke-width: 2;
-
 	stroke-width: 1.75;
+	
 
 }
 .axis path,

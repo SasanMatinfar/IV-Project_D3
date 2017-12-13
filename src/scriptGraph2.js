@@ -29,7 +29,7 @@ d3.csv("data/area-rate-2015.csv", function(data) {
 				.attr("x", height2 - 140)
 				.style("writing-mode", "lr")
 				.style("font-size", "9")
-				.text(function (d) { return d.area})
+				.text(function (d) { return d.area.slice(2,)})
 		});
 
 svg2.transition() // Gratuitous intro!
